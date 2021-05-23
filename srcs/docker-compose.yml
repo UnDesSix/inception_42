@@ -1,1 +1,8 @@
-I dont know yet
+version: '3.8'
+
+services:
+  nginx:
+    build: ./requirements/nginx/
+    ports:
+     - "80:80"
+    restart: always
