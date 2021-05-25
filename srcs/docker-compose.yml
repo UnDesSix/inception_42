@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   nginx:
@@ -6,3 +6,27 @@ services:
     ports:
      - "80:80"
     restart: always
+    networks:
+     - backend
+    volumes:
+     - dbdata:/var/www/html_test/
+  wordpress:
+    build: ./requirements/wordpress
+    ports:
+     - "9000:9000"
+    restart: always
+    networks:
+     - backend
+    volumes:
+     - dbdata:/var/www/html_test/
+
+networks:
+   backend:
+
+volumes:
+   dbdata:
+     driver: local
+     driver_opts:
+       type: 'none'
+       o: 'bind'
+       device: '/srv/redis'
