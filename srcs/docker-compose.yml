@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  nginx:
+  nginx_ser:
     build: ./requirements/nginx/
     ports:
      - "80:80"
@@ -9,24 +9,22 @@ services:
     networks:
      - backend
     volumes:
-     - dbdata:/var/www/html_test/
-  wordpress:
-    build: ./requirements/wordpress
-    ports:
-     - "9000:9000"
+     - wp_vol:/var/www/
+  wordpress_ser:
+    build: ./requirements/wordpress/
     restart: always
     networks:
      - backend
     volumes:
-     - dbdata:/var/www/html_test/
+     - wp_vol:/var/www/
 
 networks:
    backend:
 
 volumes:
-   dbdata:
+   wp_vol:
      driver: local
      driver_opts:
        type: 'none'
        o: 'bind'
-       device: '/srv/redis'
+       device: '/home/mlarboul/data/wp'
