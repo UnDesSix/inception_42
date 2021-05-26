@@ -1,11 +1,10 @@
 FROM	debian:buster
 
 RUN		apt-get update \
-	&& apt-get install -y nginx \
-	&& echo "daemon off;" >> /etc/nginx/nginx.conf \
-	&& mkdir -p /var/www/html_test/
+	&& apt-get install -y nginx
+#	&& echo "daemon off;" >> /etc/nginx/nginx.conf
 
-COPY	./conf/default /etc/nginx/sites-enabled/
+COPY ./conf/nginx.conf /etc/nginx/
 
 EXPOSE 80
-CMD ["nginx"]
+CMD ["nginx", "-g", "daemon off;"]

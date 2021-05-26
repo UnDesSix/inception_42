@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  nginx_ser:
+  nginx:
     build: ./requirements/nginx/
     ports:
      - "80:80"
@@ -10,7 +10,7 @@ services:
      - backend
     volumes:
      - wp_vol:/var/www/
-  wordpress_ser:
+  wordpress:
     build: ./requirements/wordpress/
     restart: always
     networks:
