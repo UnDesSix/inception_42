@@ -1,6 +1,7 @@
 FROM		debian:buster
 
-COPY		./tools/setup.sh /tmp/setup.sh
+COPY		./tools/setup.sh /tmp
+COPY		./conf/wp-config.php /tmp
 
 RUN			apt-get update \
 		&& apt-get install php-fpm php-mysql curl tar -y \
