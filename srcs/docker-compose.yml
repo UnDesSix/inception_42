@@ -1,25 +1,38 @@
 version: '3.9'
 
 services:
-  nginx:
+  mariadb_service:
+    build: ./requirements/mariadb
+    restart: always
+    networks:
+     - inception_net
+    volumes:
+     - db_vol:/var/www/
+    env_file: .env
+  nginx_service:
     build: ./requirements/nginx/
+    depends_on:
+     - wordpress_service
     ports:
      - "80:80"
     restart: always
     networks:
-     - backend
+     - inception_net
     volumes:
      - wp_vol:/var/www/
-  wordpress:
+  wordpress_service:
     build: ./requirements/wordpress/
+    depends_on:
+     - mariadb_service
     restart: always
     networks:
-     - backend
+     - inception_net
     volumes:
      - wp_vol:/var/www/
+    env_file: .env
 
 networks:
-   backend:
+   inception_net:
 
 volumes:
    wp_vol:
@@ -28,3 +41,9 @@ volumes:
        type: 'none'
        o: 'bind'
        device: '/home/mlarboul/data/wp'
+   db_vol:
+     driver: local
+     driver_opts:
+       type: 'none'
+       o: 'bind'
+       device: '/home/mlarboul/data/db'
