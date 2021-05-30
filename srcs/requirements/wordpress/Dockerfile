@@ -1,6 +1,6 @@
 FROM		debian:buster
 
-COPY		./tools/setup.sh /tmp
+COPY		./tools/setup_wp.sh /tmp
 COPY		./conf/wp-config.php /tmp
 
 RUN			apt-get update \
@@ -9,6 +9,6 @@ RUN			apt-get update \
 		&& curl -LO https://wordpress.org/latest.tar.gz \
 		&& tar xzvf latest.tar.gz
 
-EXPOSE		9000
+ENTRYPOINT	["bash", "/tmp/setup_wp.sh"]
 
-ENTRYPOINT	["bash", "/tmp/setup.sh"]
+EXPOSE		9000
