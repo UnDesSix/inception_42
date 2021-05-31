@@ -6,6 +6,7 @@ mv wordpress/ /var/www/
 rm latest.tar.gz
 
 mv /tmp/wp-config.php /var/www/wordpress
+chown -R www-data:www-data /var/www/wordpress/
 
 #	Set up daemonize to 'no' in the php-fpm.conf so i can run it properly after
 sed -i -e "s|;daemonize = yes|daemonize = no|g" /etc/php/7.3/fpm/php-fpm.conf
