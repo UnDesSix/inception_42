@@ -7,7 +7,7 @@ services:
     networks:
      - inception_net
     volumes:
-     - db_vol:/var/www/
+     - db_vol:/var/lib/mysql/
     env_file: .env
   nginx_service:
     build: ./requirements/nginx/
