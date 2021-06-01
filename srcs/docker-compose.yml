@@ -3,6 +3,7 @@ version: '3.9'
 services:
   mariadb_service:
     build: ./requirements/mariadb
+    container_name: mariadb
     restart: always
     networks:
      - inception_net
@@ -11,10 +12,11 @@ services:
     env_file: .env
   nginx_service:
     build: ./requirements/nginx/
+    container_name: nginx
     depends_on:
      - wordpress_service
     ports:
-     - "80:80"
+     - "443:443"
     restart: always
     networks:
      - inception_net
@@ -22,6 +24,7 @@ services:
      - wp_vol:/var/www/
   wordpress_service:
     build: ./requirements/wordpress/
+    container_name: wordpress
     depends_on:
      - mariadb_service
     restart: always
