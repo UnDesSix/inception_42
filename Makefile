@@ -7,7 +7,7 @@ COMPOSE_FILE = ./srcs/docker-compose.yml
 all		:	up
 
 up		:
-			@ docker-compose -f $(COMPOSE_FILE) up -d --build >> /dev/null
+			@ docker-compose -f $(COMPOSE_FILE) up -d --build
 			@ sleep 5
 			@ echo "$(_COLOR)Containers are now built and running.$(_RESET)"
 
