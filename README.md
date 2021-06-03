@@ -22,4 +22,6 @@ I set up :
 - A docker-network that establishes the connection between your containers.
 - In the WordPress database, there must be two users, one of them being the ad-ministrator. The administrator’s username can’t contain admin/Admin or admin-istrator/Administrator (e.g., admin, administrator, Administrator, admin-123, andso forth).
 
-![Diagram of the expected result](Dragster.jpg)
+***
+### Diagram of the expected result
+![Diagram of the expected result](https://www.zupimages.net/up/21/22/fs6a.png)
